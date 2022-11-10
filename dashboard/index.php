@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // DB Connection file
 
 include "config.php";
@@ -7,11 +9,13 @@ include "config.php";
 $objDb = new DbConnect;
 $conn = $objDb->connect();
 
+$loginError = "";
+
 if (isset($_POST['loginBtn'])) {
     $userEmail = $_POST['email'];
     $userPassword = sha1($_POST['password']);
 
-    $sqlQuery = "SELECT user_email, user_password FROM user_tbl WHERE user_email = :email && user_password = :pass";
+    $sqlQuery = "SELECT * FROM user_tbl WHERE user_email = :email && user_password = :pass";
 
     $stmt = $conn->prepare($sqlQuery);
     $stmt->bindParam(':email', $userEmail);
@@ -20,9 +24,11 @@ if (isset($_POST['loginBtn'])) {
         if ($stmt->execute()) {
             $row = $stmt->fetch();
             if($row > 0) {
+                $_SESSION['name'] = $row['user_name'];
+                $_SESSION['email'] = $row['user_email'];
                 header("location: admin.php");
             } else {
-                echo 'User Not FOUND - 404';
+              $loginError = "<span>Incorret email address or password!</span>";
             }
         }
 }
@@ -43,22 +49,24 @@ if (isset($_POST['loginBtn'])) {
     
 
 
-<div class="wrapper fadeInDown">
+<div class="wrapper  fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+      <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" id="icon" alt="User Icon" />
     </div>
 
     <!-- Login Form -->
-    <form method='POST'>
+    <form method='POST' class="d-flex flex-column align-items-center">
+      <label for="">Email Address:</label>
       <input type="email" id="login" class="fadeIn second" name="email" placeholder="Email">
+      <label for="" class="mt-3">Password:</label>
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
       <input type="submit" name='loginBtn' class="fadeIn fourth" value="Log In">
     </form>
-
+    <?php echo $loginError; ?>
   </div>
 </div>
 
