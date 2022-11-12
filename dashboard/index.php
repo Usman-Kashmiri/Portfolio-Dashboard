@@ -4,7 +4,7 @@ session_start();
 
 // DB Connection file
 
-include "config.php";
+include "../config.php";
 
 $objDb = new DbConnect;
 $conn = $objDb->connect();

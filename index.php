@@ -1,3 +1,38 @@
+
+<?php
+
+include 'config.php';
+
+$objDb = new DbConnect;
+$conn = $objDb->connect();
+
+
+$logoSqlQuery = "SELECT * FROM site_logo";
+
+$stmt = $conn->prepare($logoSqlQuery);
+
+if ($stmt->execute()) {
+    $row = $stmt->fetch();
+    if($row > 0) {
+        $siteUrl = $row['site_url'];
+        $logoSrc = $row['logo_src'];
+    }
+}
+
+$navSqlQuery = "SELECT * FROM nav_tbl";
+
+$stmt2 = $conn->prepare($navSqlQuery);
+
+if ($stmt2->execute()) {
+    $stmt2->fetchAll(\PDO::FETCH_ASSOC);
+    // if($row > 0) {
+    //     $navLinks = $row['nav_links'];
+    //     $linksText = $row['links_text'];
+    // }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +58,7 @@
     <section id="nav-bar-sec">
         <nav class="nav-bar">
             <div class="logo">
-                <a href="index.html">Kashmiri.Dev</a>
+                <a href="<?php echo $siteUrl; ?>"><?php echo $logoSrc; ?></a>
             </div>
             <!-- Hamburger Icon with animation -->
             <div class="menu-btn">
@@ -35,12 +70,23 @@
             </div>
             <div class="nav-bar-container">
                 <ul class="menu">
-                    <li><a href="#home">Home</a></li>
+                    <?php
+                    foreach ($stmt2 as $links) {
+                        $link = $links["nav_links"];
+                        foreach ($stmt2 as $txts) {
+                            $text = $text['links_text'];
+                            echo "<li><a href='<?php $link ?>'><?php $text ?></a></li>";  
+                        }
+                    }
+
+
+                    ?>
+                    <!-- <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#work">Work</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact">Contact</a></li> -->
                     <div class="social">
                         <li><a href="https://github.com/Usman-Kashmiri"><i class="fab fa-github"></i></a></li>
                         <li><a href="https://www.linkedin.com/in/usman-kashmiri-b26543208/"><i class="fab fa-linkedin"></i></a></li>
