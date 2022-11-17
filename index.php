@@ -1,35 +1,6 @@
-
 <?php
 
-include 'config.php';
-
-$objDb = new DbConnect;
-$conn = $objDb->connect();
-
-
-$logoSqlQuery = "SELECT * FROM site_logo";
-
-$stmt = $conn->prepare($logoSqlQuery);
-
-if ($stmt->execute()) {
-    $row = $stmt->fetch();
-    if($row > 0) {
-        $siteUrl = $row['site_url'];
-        $logoSrc = $row['logo_src'];
-    }
-}
-
-$navSqlQuery = "SELECT * FROM nav_tbl";
-
-$stmt2 = $conn->prepare($navSqlQuery);
-
-if ($stmt2->execute()) {
-    $stmt2->fetchAll(\PDO::FETCH_ASSOC);
-    // if($row > 0) {
-    //     $navLinks = $row['nav_links'];
-    //     $linksText = $row['links_text'];
-    // }
-}
+include 'fetchAll.php';
 
 ?>
 
@@ -50,6 +21,20 @@ if ($stmt2->execute()) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <style>
+        .light-bg {
+            transition: 0.6s ease-in;
+            background: url(<?php echo $bannerTblResult['light_mode_bg']; ?>) no-repeat center;
+        }
+
+        .dark-bg {
+            transition: 0.6s ease-in;
+            background: url(<?php echo $bannerTblResult['dark_mode_bg']; ?>) no-repeat center;
+        }
+        .typing {
+            text-transform: capitalize;
+        }
+    </style>
 </head>
 
 <body>
@@ -71,22 +56,14 @@ if ($stmt2->execute()) {
             <div class="nav-bar-container">
                 <ul class="menu">
                     <?php
-                    foreach ($stmt2 as $links) {
-                        $link = $links["nav_links"];
-                        foreach ($stmt2 as $txts) {
-                            $text = $text['links_text'];
-                            echo "<li><a href='<?php $link ?>'><?php $text ?></a></li>";  
+                    if($navTblResult > 0) {
+                        foreach ($navTblResult as $nav) {
+                    ?>
+                    <li><a href="<?php echo $nav['nav_links'] ?>"><?php echo $nav['links_text'] ?></a></li>
+                    <?php 
                         }
                     }
-
-
                     ?>
-                    <!-- <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#contact">Contact</a></li> -->
                     <div class="social">
                         <li><a href="https://github.com/Usman-Kashmiri"><i class="fab fa-github"></i></a></li>
                         <li><a href="https://www.linkedin.com/in/usman-kashmiri-b26543208/"><i class="fab fa-linkedin"></i></a></li>
@@ -118,10 +95,10 @@ if ($stmt2->execute()) {
     <section class="home light-bg" id="home">
         <div class="container">
             <div class="home-content">
-                <div class="text-1">Hey, my name is</div>
-                <div class="text-2">M. Usman Amjad</div>
-                <div class="text-3">And I am a <span class="typing"></span></div>
-                <a href="mailto:usmankashmiri378@gmail.com">Hire me</a>
+                <div class="text-1"><?php echo $bannerTblResult['upper_text'] ?></div>
+                <div class="text-2"><?php echo $bannerTblResult['name_text'] ?></div>
+                <div class="text-3"><?php echo $bannerTblResult['lower_text'] ?> <span class="typing"></span></div>
+                <a href="mailto:usmankashmiri378@gmail.com"><?php echo $bannerTblResult['btn_text'] ?></a>
             </div>
         </div>
     </section>
@@ -443,6 +420,24 @@ if ($stmt2->execute()) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js "></script>
     <script src="assets/scripts/index.js"></script>
+    <script>
+        <?php
+            $designations = explode(',', $bannerTblResult['designation']);
+        ?>
+        // typing text animation script
+        var typed = new Typed(".typing", {
+            strings: [<?php 
+                foreach ($designations as $desi) {
+                   echo json_encode($desi);
+                   echo ",";
+                }
+                 ?>],
+            typeSpeed: 100,
+            backSpeed: 40,
+            loop: true
+        });
+
+    </script>
 </body>
 
 </html>

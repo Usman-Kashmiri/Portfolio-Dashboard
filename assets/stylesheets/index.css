@@ -9,6 +9,7 @@
     box-sizing: border-box;
     text-decoration: none;
     outline: none;
+    list-style: none;
 }
 
 
@@ -331,7 +332,6 @@ section .title::after {
     display: none;
 }
 
-
 /* home section styling */
 
 section.home {
@@ -344,15 +344,6 @@ section.home {
     font-family: 'Ubuntu', sans-serif;
 }
 
-.light-bg {
-    transition: 0.6s ease-in;
-    background: url(../imgs/LightModeBanner.jpg) no-repeat center;
-}
-
-.dark-bg {
-    transition: 0.6s ease-in;
-    background: url(../imgs/DarkModeBanner.jpg) no-repeat center;
-}
 
 .home .container {
     margin: auto 0 auto 30px;
