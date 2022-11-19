@@ -10,16 +10,25 @@ $objDb = new DbConnect;
 $conn = $objDb->connect();
 
 $loginError = "";
+$recaptchaErr = "";
 
 if (isset($_POST['loginBtn'])) {
+  if(isset($_POST['g-recaptcha-response'])) {
+    $secretKey = "6LeMBBsjAAAAAJ8XrvIwHuqf02rOcQY21KLvCd1F";
+    $responseKey = $_POST['g-recaptcha-response'];
+    $userIP = $_SERVER['REMOTE_ADDR'];
+    $url = "https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$responseKey&remoteip=$userIP";
+    $response = file_get_contents($url);
+    $response = json_decode($response);
     $userEmail = $_POST['email'];
     $userPassword = sha1($_POST['password']);
 
-    $sqlQuery = "SELECT * FROM user_tbl WHERE user_email = :email && user_password = :pass";
+    if ($response->success) {
+      $sqlQuery = "SELECT * FROM user_tbl WHERE user_email = :email && user_password = :pass";
 
-    $stmt = $conn->prepare($sqlQuery);
-    $stmt->bindParam(':email', $userEmail);
-    $stmt->bindParam(':pass', $userPassword);
+      $stmt = $conn->prepare($sqlQuery);
+      $stmt->bindParam(':email', $userEmail);
+      $stmt->bindParam(':pass', $userPassword);
 
         if ($stmt->execute()) {
             $row = $stmt->fetch();
@@ -31,6 +40,10 @@ if (isset($_POST['loginBtn'])) {
               $loginError = "<span>Incorret email address or password!</span>";
             }
         }
+      } else {
+        $recaptchaErr = "<div class='alert alert-danger'>Invalid Recaptcha...!</div>";
+      }
+    }
 }
 
 ?>
@@ -64,6 +77,10 @@ if (isset($_POST['loginBtn'])) {
       <input type="email" id="login" class="fadeIn second" name="email" placeholder="Email">
       <label for="" class="mt-3">Password:</label>
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+      <div class="my-3">
+        <div class="g-recaptcha" data-sitekey="6LeMBBsjAAAAAJbKI8YEA2ETvxN2z-9FycPeayRC"></div>
+      </div>
+      <?php echo $recaptchaErr; ?>
       <input type="submit" name='loginBtn' class="fadeIn fourth" value="Log In">
     </form>
     <?php echo $loginError; ?>
@@ -71,6 +88,7 @@ if (isset($_POST['loginBtn'])) {
 </div>
 
     <!-- JS Files -->
+    <script src='https://www.google.com/recaptcha/api.js'></script> <!-- google recaptcha -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

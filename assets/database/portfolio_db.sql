@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2022 at 07:14 AM
+-- Generation Time: Nov 19, 2022 at 07:11 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -42,7 +42,7 @@ CREATE TABLE `banner_tbl` (
 --
 
 INSERT INTO `banner_tbl` (`upper_text`, `name_text`, `lower_text`, `designation`, `btn_text`, `light_mode_bg`, `dark_mode_bg`) VALUES
-('Hey, my name is', 'M. Usman Amjad', 'And I am a', 'full stack developer, graphics designer', 'hire me', '../imgs/LightModeBanner.jpg', '../imgs/DarkModeBanner.jpg');
+('Hey, my name is', 'M. Usman Amjad', 'And I am a', 'full stack developer, graphics designer', 'hire me', 'assets/imgs/LightModeBanner.jpg\r\n', 'assets/imgs/DarkModeBanner.jpg\r\n');
 
 -- --------------------------------------------------------
 
