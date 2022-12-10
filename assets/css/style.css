@@ -205,7 +205,7 @@ body.dark {
 
 .container {
     max-width: 1300px;
-    padding: 50px 80px;
+    padding: 50px 65px;
     margin: auto;
 }
 
@@ -396,7 +396,7 @@ section.home {
 }
 
 .about .about-content .col-right {
-    width: 40%;
+    width: 36%;
 }
 
 .about .about-content .col-right img {
@@ -407,7 +407,7 @@ section.home {
 }
 
 .about .about-content .col-left {
-    width: 50%;
+    width: 60%;
 }
 
 .about .text {
@@ -584,43 +584,6 @@ section.home {
 .right {
     overflow: hidden;
 }
-
-.line {
-    height: 8px;
-    width: 100%;
-    background: lightgrey;
-    position: relative;
-}
-
-.line::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: var(--DBlue);
-}
-
-.skills-content .right .html::before {
-    width: 95%;
-}
-
-.skills-content .right .css::before {
-    width: 90%;
-}
-
-.skills-content .right .js::before {
-    width: 85%;
-}
-
-.skills-content .right .office::before {
-    width: 80%;
-}
-
-.skills-content .right .editing::before {
-    width: 75%;
-}
-
 
 /* work section styling */
 

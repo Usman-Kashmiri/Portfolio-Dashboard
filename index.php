@@ -1,11 +1,9 @@
-<?php
-
-include 'fetchAll.php';
-
-?>
+<!-- All queries and logic -->
+<?php include 'fetchAll.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,25 +14,13 @@ include 'fetchAll.php';
     <meta http-equiv="refresh" content="60">
     <title>Kashmiri.Dev | Web Developer</title>
     <!-- Style-sheets & CDNs -->
-    <link rel="stylesheet" href="assets/stylesheets/index.css">
+    <link rel="stylesheet" href="assets/stylesheets/style.css">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    <style>
-        .light-bg {
-            transition: 0.6s ease-in;
-            background: url(<?php echo $bannerTblResult['light_mode_bg']; ?>) no-repeat center;
-        }
-
-        .dark-bg {
-            transition: 0.6s ease-in;
-            background: url(<?php echo $bannerTblResult['dark_mode_bg']; ?>) no-repeat center;
-        }
-        .typing {
-            text-transform: capitalize;
-        }
-    </style>
+    <!-- Styling with php -->
+    <?php include 'assets/css/style.php'; ?>
 </head>
 
 <body>
@@ -56,11 +42,11 @@ include 'fetchAll.php';
             <div class="nav-bar-container">
                 <ul class="menu">
                     <?php
-                    if($navTblResult > 0) {
+                    if ($navTblResult > 0) {
                         foreach ($navTblResult as $nav) {
                     ?>
-                    <li><a href="<?php echo $nav['nav_links'] ?>"><?php echo $nav['links_text'] ?></a></li>
-                    <?php 
+                            <li><a href="<?php echo $nav['nav_links'] ?>"><?php echo $nav['links_text'] ?></a></li>
+                    <?php
                         }
                     }
                     ?>
@@ -111,18 +97,16 @@ include 'fetchAll.php';
 
     <section class="about" id="about">
         <div class="container">
-            <h2 class="title">About Me</h2>
+            <h2 class="title"><?php echo $headings[1]; ?></h2>
             <div class="about-content">
                 <div class="col-left">
-                    <div class="text"><span>I am Usman and I'm a </span><span class="typing-2"></span></div>
-                    <p>I am a passionate Web developer, looking for an opportunity in the field of web development. Below in work section you'll find some examples of my work. I am really dedicated to my work. I know editing stuff & Ms-Office automation
-                        as well.
-                    </p>
-                    <a href="assets/cv/My CV.docx">Download CV</a>
+                    <div class="text"><span><?php echo $aboutSecTblResult[0]; ?> </span><span class="typing-2"></span></div>
+                    <p><?php echo $aboutSecTblResult[1]; ?></p>
+                    <a href="<?php echo $aboutSecTblResult[2]; ?>">Download CV</a>
                 </div>
                 <div class="col-right">
-                    <img id="lightimg" src="assets/imgs/LightModeimg.png" alt="Usman Kashmiri">
-                    <img id="darkimg" src="assets/imgs/DarkModeimg.png" alt="Usman Kashmiri">
+                    <img id="lightimg" src="<?php echo $aboutSecTblResult[3]; ?>" alt="Usman Kashmiri">
+                    <img id="darkimg" src="<?php echo $aboutSecTblResult[4]; ?>" alt="Usman Kashmiri">
                 </div>
             </div>
         </div>
@@ -132,35 +116,19 @@ include 'fetchAll.php';
 
     <section class="services" id="services">
         <div class="container">
-            <h2 class="title">My Services</h2>
+            <h2 class="title"><?php echo $headings[2]; ?></h2>
             <div class="serv-content">
-                <div class="card">
-                    <div class="box">
-                        <i class="fas fa-paint-brush"></i>
-                        <div class="text">
-                            <h4>Web Design</h4>
+                <?php foreach ($servicesSecTblResult as $servies) { ?>
+                    <div class="card">
+                        <div class="box">
+                            <i class="<?php echo $servies[1] ?>"></i>
+                            <div class="text">
+                                <h4><?php echo $servies[2] ?></h4>
+                            </div>
+                            <p><?php echo $servies[3] ?></p>
                         </div>
-                        <p>I can build UI/UX of Web sites.</p>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="box">
-                        <i class="fas fa-photo-video"></i>
-                        <div class="text">
-                            <h4>Photo/Video Editing</h4>
-                        </div>
-                        <p>I can edit photos & videos.</p>
-                    </div>
-                </div>
-                <div id="third-box" class="card">
-                    <div class="box">
-                        <i class="fas fa-file"></i>
-                        <div class="text">
-                            <h4>MS-Office</h4>
-                        </div>
-                        <p>I know Ms-Office automation</p>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
         </div>
@@ -170,60 +138,26 @@ include 'fetchAll.php';
 
     <section class="skills" id="skills">
         <div class="container">
-            <h2 class="title">My skills</h2>
+            <h2 class="title"><?php echo $headings[3]; ?></h2>
             <div class="skills-content">
                 <div class="column left">
                     <div class="text">
-                        <h3>My creative skills:</h3>
+                        <h3><?php echo $skillsSecTblResult[0]; ?></h3>
                     </div>
-                    <p>I've learnt Web designing from Aptech Gulshan Center. And I'm currently working on MS SQL Server, ASP.Net MVC, MySQL, PHP, Wordpress & Search Engine Optimizations (SEO). I've knowledge of HTML/CSS/JavaScript and version controlling using Git. JavaScript libraries, Jquery and Angular 13.
-                        Jquery Plugins & JS plugins (such as: GSAP, AOS, WOWJS). I've command over Bootstrap & I can work with latest web frameworks as well (such as: Materialized CSS & Tailwind CSS). I can design responsive websites with custom CSS.
-                        I can work with CMS as well (such as: WIX & WordPress). I've written some blogs on WordPress as well. I know MS-Office automation. And I can edit photos & Videos using Adobe Photoshop, Adobe Premiere Pro & I also have basic knowledge
-                        of Adobe After Effects.</p>
+                    <p><?php echo $skillsSecTblResult[1]; ?></p>
                 </div>
                 <div class="column right">
-                    <div class="bars">
-                        <div class="info">
-                            <span>HTML</span>
-                            <span>95%</span>
+                    <?php
+                    $i = 1; 
+                    foreach ($skillsTblResult as $skill) { ?>
+                        <div class="bars">
+                            <div class="info">
+                                <span><?php echo $skill[1] ?></span>
+                                <span><?php echo $skill[2] ?>%</span>
+                            </div>
+                            <div class="line <?php echo "skill_".$i."_level"; ?>"></div>
                         </div>
-                        <div class="line html"></div>
-                    </div>
-                    <div class="bars">
-                        <div class="info">
-                            <span>CSS</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="line css"></div>
-                    </div>
-                    <div class="bars">
-                        <div class="info">
-                            <span>Frameworks (Bootstrap, Materialize CSS)</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="line css"></div>
-                    </div>
-                    <div class="bars">
-                        <div class="info">
-                            <span>JavaScript & JQuery</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="line js"></div>
-                    </div>
-                    <div class="bars">
-                        <div class="info">
-                            <span>MS-Office</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="line office"></div>
-                    </div>
-                    <div class="bars">
-                        <div class="info">
-                            <span>Photo/Video Editing</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="line editing"></div>
-                    </div>
+                    <?php $i++; } ?>
                 </div>
             </div>
     </section>
@@ -232,104 +166,18 @@ include 'fetchAll.php';
 
     <section class="work " id="work ">
         <div class="container ">
-            <h2 class="title ">My Best Work</h2>
+            <h2 class="title "><?php echo $headings[4]; ?></h2>
             <div class="carousel owl-carousel ">
+                <?php foreach ($workTblResult as $work) { ?>
                 <div class="card">
-                    <a href="https://usman-kashmiri.github.io/Blueberry-Accessories/index.html">
+                    <a href="<?php echo $work[3] ?>">
                         <div class="box">
-                            <img src="assets/imgs/carousel/img01.jpg" alt=" ">
-                            <div class="text ">Blueberry Accessories - Home</div>
+                            <img src="<?php echo $work[2] ?>" alt="carousel image">
+                            <div class="text "><?php echo $work[4] ?></div>
                         </div>
                     </a>
                 </div>
-                <div class="card">
-                    <a href="https://usman-kashmiri.github.io/Blueberry-Accessories/index.html">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img02.jpg" alt=" ">
-                            <div class="text ">Blueberry Accessoriesr - Products</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="https://usman-kashmiri.github.io/Blueberry-Accessories/product.html">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img03.jpg" alt=" ">
-                            <div class="text ">Blueberry Accessories - Product Details</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="https://www.bilawalcoachingcenter.com/">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img 04.JPG" alt=" ">
-                            <div class="text ">bilawal coaching center - Home</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="https://www.bilawalcoachingcenter.com/login.php">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img 05.JPG" alt=" ">
-                            <div class="text ">Bilawal Coaching Center - login</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="https://www.bilawalcoachingcenter.com/demo.php?demo=13">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img 06.JPG" alt=" ">
-                            <div class="text ">Bilawal Coaching Center - Demo</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="https://usman-kashmiri.github.io/Travel.pk/">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img 07.JPG" alt=" ">
-                            <div class="text ">Travel.pk - Banner</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="https://usman-kashmiri.github.io/Travel.pk/#services">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img 08.JPG" alt=" ">
-                            <div class="text ">Travel.pk - Services</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="https://usman-kashmiri.github.io/Travel.pk/#footer">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img 09.JPG" alt=" ">
-                            <div class="text ">Travel.pk - Contact</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="https://usman-kashmiri.github.io/crystal-products/ ">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img 10.JPG " alt=" ">
-                            <div class="text ">Crystal Products - Home</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="https://usman-kashmiri.github.io/crystal-products/product.html">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img 11.JPG" alt=" ">
-                            <div class="text ">Crystal Products - Products</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="card">
-                    <a href="https://usman-kashmiri.github.io/crystal-products/contact.html">
-                        <div class="box">
-                            <img src="assets/imgs/carousel/img 12.JPG " alt=" ">
-                            <div class="text ">Crystal Products - Contact</div>
-                        </div>
-                    </a>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </section>
@@ -338,46 +186,33 @@ include 'fetchAll.php';
 
     <section class="contact " id="contact ">
         <div class="container ">
-            <h2 class="title ">contact me</h2>
+            <h2 class="title "><?php echo $headings[5]; ?></h2>
             <div class="contact-content ">
                 <div class="column left ">
                     <div class="text ">
-                        <h4>My Details:</h4>
+                        <h4><?php echo $contactSecTblResult[0] ?></h4>
                     </div>
-                    <p>I am a freshie, I don't have a working experience. I am a student; I've passed my matriculation with A grade in 2017 from Sindh Text Board. I've studied Intermediate from Islamia Sci. College, Karachi. And currently doing software
-                        engineering diploma from Aptech Computer Learning Institute.</p>
+                    <p><?php echo $contactSecTblResult[1] ?></p>
                     <div class="icons ">
+                        <?php foreach ($contactDetailTblResult as $detail) { ?>
                         <div class="row ">
-                            <i class="fas fa-user "></i>
+                            <i class="<?php echo $detail[1] ?>"></i>
                             <div class="info ">
                                 <div class="head ">
-                                    <P>Name</p>
+                                    <P><?php echo $detail[2] ?></p>
                                 </div>
                                 <div class="sub-title ">
-                                    <p>M. Usman Amjad</p>
+                                    <?php
+                                    if ($detail[2] == "Email") {
+                                         echo "<a href='mailto:$detail[3]'>$detail[3]</a>";
+                                        } else {
+                                            echo "<p>$detail[3]</p>";
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="row ">
-                            <i class="fas fa-map-marker-alt "></i>
-                            <div class="info ">
-                                <div class="head ">
-                                    <p>Address</p>
-                                </div>
-                                <div class="sub-title ">
-                                    <p>Karachi, Pakistan</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <i class="fas fa-envelope "></i>
-                            <div class="info ">
-                                <div class="head ">
-                                    <p>Email</p>
-                                </div>
-                                <div class="sub-title "><a href="mailto:usmankashmiri378@gmail.com ">usmankashmiri378@gmail.com</a></div>
-                            </div>
-                        </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="column right ">
@@ -410,7 +245,7 @@ include 'fetchAll.php';
 
     <!-- footer section start -->
     <footer>
-        <span>Designed By <a href="mailto:usmankashmiri378@gmail.com ">Usman Kashmiri</a> | &#169 2021 All rights reserved.</span>
+        <span><?php echo $footerTblResult[0]; ?> <a href="<?php echo $siteUrl; ?>"><?php echo $footerTblResult[1]; ?></a> | &#169 <?php echo $footerTblResult[2]." - ".date("Y")." ".$footerTblResult[3]; ?></span>
     </footer>
 
     <!-- JavaScript & CDN -->
@@ -420,24 +255,8 @@ include 'fetchAll.php';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js "></script>
     <script src="assets/scripts/index.js"></script>
-    <script>
-        <?php
-            $designations = explode(',', $bannerTblResult['designation']);
-        ?>
-        // typing text animation script
-        var typed = new Typed(".typing", {
-            strings: [<?php 
-                foreach ($designations as $desi) {
-                   echo json_encode($desi);
-                   echo ",";
-                }
-                 ?>],
-            typeSpeed: 100,
-            backSpeed: 40,
-            loop: true
-        });
-
-    </script>
+    <!-- Javascript with php -->
+    <?php include 'assets/js/mainjs.php' ?>
 </body>
 
 </html>
