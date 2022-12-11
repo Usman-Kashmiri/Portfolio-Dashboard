@@ -96,7 +96,7 @@
                 <div class="text-1"><?php echo $bannerTblResult['upper_text'] ?></div>
                 <div class="text-2"><?php echo $bannerTblResult['name_text'] ?></div>
                 <div class="text-3"><?php echo $bannerTblResult['lower_text'] ?> <span class="typing"></span></div>
-                <a href="mailto:usmankashmiri378@gmail.com"><?php echo $bannerTblResult['btn_text'] ?></a>
+                <a href="mailto:<?php echo $mailTblResult ?>"><?php echo $bannerTblResult['btn_text'] ?></a>
             </div>
         </div>
     </section>
