@@ -32,12 +32,10 @@
         background: var(--DBlue);
     }
     
-    <?php 
-    $i = 1;
-    foreach ($skillsTblResult as $skill) { ?>
-        .skills-content .right <?php echo ".skill_".$i."_level"; ?>::before {
-            width: <?php echo $skill[2] ?>%; }
-            <?php $i++; ?>
-    <?php } ?>
+<?php $i = 1;
+foreach ($skillsTblResult as $skill) { ?>
+.skills-content .right <?php echo ".skill_".$i."_level"; ?>::before { width: <?php echo $skill[2] ?>%; }
+<?php $i++; ?>
+<?php } ?>
     
 </style>

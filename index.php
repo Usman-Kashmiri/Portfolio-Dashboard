@@ -5,22 +5,34 @@
 <html lang="en">
 
 <head>
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="I'm a Web Developer, offering various software development and maintenance services.">
-    <meta name="keywords" content="HTML, CSS, Angular Developer, Website Developer, Web Developer, Frontend Web Developer, Php Developer, Full Stack Developer, Wordpress Developer, Dot Net Developer">
-    <meta name="author" content="Usman Kashmiri">
+    
+    <!-- Meta tags for Seos -->
+    <meta name="author" content="<?php echo $seoTblResult[0]; ?>">
+    <meta name="description" content="<?php echo $seoTblResult[2]; ?>">
+    <meta name="keywords" content="<?php echo $seoTblResult[3]; ?>">
     <meta http-equiv="refresh" content="60">
-    <title>Kashmiri.Dev | Web Developer</title>
+
+    <!-- Site title -->
+    <title><?php echo $seoTblResult[1]; ?> | Web Developer</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo $logoTblResult[1]; ?>" type="image/x-icon">
+
     <!-- Style-sheets & CDNs -->
-    <link rel="stylesheet" href="assets/stylesheets/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    
     <!-- Styling with php -->
     <?php include 'assets/css/style.php'; ?>
+
 </head>
 
 <body>
@@ -29,7 +41,7 @@
     <section id="nav-bar-sec">
         <nav class="nav-bar">
             <div class="logo">
-                <a href="<?php echo $siteUrl; ?>"><?php echo $logoSrc; ?></a>
+                <a href="<?php echo $logoTblResult[4]; ?>"><?php echo $logoTblResult[2]; ?></a>
             </div>
             <!-- Hamburger Icon with animation -->
             <div class="menu-btn">
@@ -249,12 +261,12 @@
     </footer>
 
     <!-- JavaScript & CDN -->
-    <script src="assets/scripts/jquery.js"></script>
-    <script src="assets/scripts/GSAP3.js"></script>
-    <script src="assets/scripts/ScrollTrigger.min.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/GSAP3.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js "></script>
-    <script src="assets/scripts/index.js"></script>
+    <script src="assets/js/index.js"></script>
     <!-- Javascript with php -->
     <?php include 'assets/js/mainjs.php' ?>
 </body>

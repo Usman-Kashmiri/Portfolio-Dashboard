@@ -2,12 +2,9 @@
 
 session_start();
 
-// DB Connection file
+// fetchAll db file
 
-include "../config.php";
-
-$objDb = new DbConnect;
-$conn = $objDb->connect();
+include '../fetchAll.php';
 
 $loginError = "";
 $recaptchaErr = "";
@@ -24,7 +21,7 @@ if (isset($_POST['loginBtn'])) {
     $userPassword = sha1($_POST['password']);
 
     if ($response->success) {
-      $sqlQuery = "SELECT * FROM user_tbl WHERE user_email = :email && user_password = :pass";
+      $sqlQuery = "SELECT * FROM admin_tbl WHERE user_email = :email && user_password = :pass";
 
       $stmt = $conn->prepare($sqlQuery);
       $stmt->bindParam(':email', $userEmail);
@@ -54,7 +51,13 @@ if (isset($_POST['loginBtn'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kashmiri.Dev - Login</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo $logoTblResult[1]; ?>" type="image/x-icon">
+
+    <!-- Site title -->
+    <title><?php echo $seoTblResult[1]; ?> - Login</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -89,7 +92,7 @@ if (isset($_POST['loginBtn'])) {
 
     <!-- JS Files -->
     <script src='https://www.google.com/recaptcha/api.js'></script> <!-- google recaptcha -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../assets/js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

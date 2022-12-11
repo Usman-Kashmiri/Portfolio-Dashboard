@@ -18,7 +18,7 @@ $userEmail = 'usmankashmiri@kashmiri.dev';
 
 // Query
 
-$sqlQuery = "INSERT INTO `user_tbl`(`user_id`, `user_name`, `user_email`, `user_password`) VALUES (:id, :username, :email, :pass)";
+$sqlQuery = "INSERT INTO `adminn_tbl`(`user_id`, `user_name`, `user_email`, `user_password`) VALUES (:id, :username, :email, :pass)";
 
 $stmt = $conn->prepare($sqlQuery);
 $stmt->bindParam(':id', $userId);

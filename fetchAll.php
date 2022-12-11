@@ -13,18 +13,24 @@ include 'config.php';
 $objDb = new DbConnect;
 $conn = $objDb->connect();
 
+// Seo queries
+
+$seoSqlQuery = "SELECT * FROM seo_tbl";
+
+$seoStmt = $conn->prepare($seoSqlQuery);
+
+if ($seoStmt->execute()) {
+    $seoTblResult = $seoStmt->fetch();
+}
+
 // Logo queries
 
 $logoSqlQuery = "SELECT * FROM site_logo";
 
-$stmt = $conn->prepare($logoSqlQuery);
+$logoStmt = $conn->prepare($logoSqlQuery);
 
-if ($stmt->execute()) {
-    $logoTblResult = $stmt->fetch();
-    if($logoTblResult > 0) {
-        $siteUrl = $logoTblResult['site_url'];
-        $logoSrc = $logoTblResult['logo_src'];
-    }
+if ($logoStmt->execute()) {
+    $logoTblResult = $logoStmt->fetch();
 }
 
 // Navbar queries
