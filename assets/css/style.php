@@ -1,4 +1,15 @@
 <style>
+    /* Theme */
+
+    :root {
+        --primary_color: <?php echo $themeTblResult[0] ?>;
+        --secondary_color: <?php echo $themeTblResult[1] ?>;
+        --dark_contrast_color: <?php echo $themeTblResult[2] ?>;
+        --light_contrast_color: <?php echo $themeTblResult[3] ?>;
+        --White: #fff;
+        --Black: #111;
+    }
+
     .light-bg {
         transition: 0.6s ease-in;
         background: url(<?php echo $bannerTblResult['light_mode_bg']; ?>) no-repeat center;
@@ -29,13 +40,10 @@
         height: 100%;
         left: 0;
         top: 0;
-        background: var(--DBlue);
+        background: var(--secondary_color);
     }
-    
-<?php $i = 1;
-foreach ($skillsTblResult as $skill) { ?>
-.skills-content .right <?php echo ".skill_".$i."_level"; ?>::before { width: <?php echo $skill[2] ?>%; }
-<?php $i++; ?>
-<?php } ?>
-    
+
+    <?php $i = 1;
+    foreach ($skillsTblResult as $skill) { ?>.skills-content .right <?php echo ".skill_" . $i . "_level"; ?>::before { width: <?php echo $skill[2] ?>%; }
+    <?php $i++; ?><?php } ?>
 </style>

@@ -23,6 +23,16 @@ if ($seoStmt->execute()) {
     $seoTblResult = $seoStmt->fetch();
 }
 
+// theme queries
+
+$themeSqlQuery = "SELECT * FROM theme_tbl";
+
+$themeStmt = $conn->prepare($themeSqlQuery);
+
+if ($themeStmt->execute()) {
+    $themeTblResult = $themeStmt->fetch();
+}
+
 // Logo queries
 
 $logoSqlQuery = "SELECT * FROM site_logo";

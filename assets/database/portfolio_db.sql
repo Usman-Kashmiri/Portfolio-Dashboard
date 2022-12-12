@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2022 at 06:03 AM
+-- Generation Time: Dec 12, 2022 at 01:20 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -195,6 +195,19 @@ INSERT INTO `nav_tbl` (`nav_id`, `links_text`, `nav_links`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `projects_count_tbl`
+--
+
+CREATE TABLE `projects_count_tbl` (
+  `id` int(11) NOT NULL,
+  `total_count` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `section_headings_tbl`
 --
 
@@ -325,6 +338,26 @@ INSERT INTO `skills_tbl` (`skill_id`, `skill_name`, `skill_level`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `theme_tbl`
+--
+
+CREATE TABLE `theme_tbl` (
+  `primary_color` text NOT NULL,
+  `secondary_color` text NOT NULL,
+  `dark_contrast_color` text NOT NULL,
+  `light_contrast_color` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `theme_tbl`
+--
+
+INSERT INTO `theme_tbl` (`primary_color`, `secondary_color`, `dark_contrast_color`, `light_contrast_color`) VALUES
+('#7bb4eb', '#2f387a', '#212121', '#fff');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `work_sec_tbl`
 --
 
@@ -371,6 +404,12 @@ ALTER TABLE `nav_tbl`
   ADD PRIMARY KEY (`nav_id`);
 
 --
+-- Indexes for table `projects_count_tbl`
+--
+ALTER TABLE `projects_count_tbl`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `section_headings_tbl`
 --
 ALTER TABLE `section_headings_tbl`
@@ -409,6 +448,12 @@ ALTER TABLE `contact_detail_tbl`
 --
 ALTER TABLE `nav_tbl`
   MODIFY `nav_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `projects_count_tbl`
+--
+ALTER TABLE `projects_count_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `section_headings_tbl`
