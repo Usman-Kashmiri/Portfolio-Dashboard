@@ -1,7 +1,7 @@
 <?php
 
-// site tile
-$siteTitle = "Admin Panel";
+// site title 
+$siteTitle = "Edit Footer";
 
 // Body file
 include 'header.php';
@@ -10,7 +10,7 @@ include 'header.php';
 
 <!-- Content -->
 
-<h2>Welcome to Dashoard Mr. <?php echo $_SESSION['name']; ?></h2>
+<h2>Edit Footer</h2>
 
 <?php 
 

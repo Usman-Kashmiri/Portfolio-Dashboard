@@ -1,3 +1,10 @@
+<?php
+
+// Session start file
+include 'session.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,3 +31,22 @@
 
     <!-- CSS Files -->
     <link id="pagestyle" href="../corporate ui design kit/css/corporate-ui-dashboard.min.css?v=1.0.0" rel="stylesheet" />
+
+
+    <!-- Site title -->
+    <title><?php echo $seoTblResult[1] . " - " . $siteTitle; ?></title>
+
+</head>
+
+<body class="g-sidenav-show bg-gray-100">
+
+    <?php include 'aside.php' ?>
+
+    <!-- main -->
+
+    <main class="main-content position-relative min-vh-100 border-radius-lg">
+
+        <!-- Navbar -->
+        <?php include 'navbar.php' ?>
+
+        <div class="container">

@@ -261,3 +261,11 @@ input[type="text"]:placeholder {
 aside .nav-link i {
   font-size: 1.2rem !important;
 }
+
+ul.dropdown-menu li a {
+  color: white !important;
+}
+
+ul.dropdown-menu li:hover a {
+  color: black !important;
+}

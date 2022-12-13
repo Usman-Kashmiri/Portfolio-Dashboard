@@ -55,77 +55,91 @@ if (isset($_POST['loginBtn'])) {
   }
 }
 
-include 'header.php';
-
 ?>
 
-<!-- Site title -->
-<title><?php echo $seoTblResult[1]; ?> - Login</title>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="<?php echo $logoTblResult[1]; ?>" type="image/x-icon">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Fonts and icons -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Noto+Sans:300,400,500,600,700,800|PT+Mono:300,400,500,600,700" rel="stylesheet" />
+
+  <!-- Nucleo Icons -->
+  <link href="../corporate ui design kit/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="../corporate ui design kit/css/nucleo-svg.css" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../corporate ui design kit/css/corporate-ui-dashboard.min.css?v=1.0.0" rel="stylesheet" />
+
+  <!-- Site title -->
+  <title><?php echo $seoTblResult[1]; ?> - Login</title>
 
 </head>
 
 <body>
 
+  <main>
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tabs Titles -->
 
+        <!-- Icon -->
+        <div class="fadeIn first">
+          <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" id="icon" alt="User Icon" />
+        </div>
 
-  <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
+        <!-- Login Form -->
+        <form method='POST' class="d-flex flex-column align-items-center">
 
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" id="icon" alt="User Icon" />
+          <!-- Email input field -->
+          <div class="row">
+            <div class="col-md-12 p-0">
+              <div class="form-group">
+                <label for="">Email Address:</label>
+                <input type="email" id="login" class="fadeIn second form-control" autocomplete="off" name="email" placeholder="Email">
+              </div>
+            </div>
+          </div>
+
+          <!-- Password input field -->
+          <div class="row">
+            <div class="col-md-12 p-0">
+              <div class="form-group">
+                <label for="" class="mt-3">Password:</label>
+                <input type="password" id="password" class="fadeIn third form-control" name="password" placeholder="Password">
+              </div>
+            </div>
+          </div>
+
+          <!-- Incorrect email/password error -->
+          <?php echo $loginError; ?>
+
+          <!-- Google Recaptcha -->
+          <div class="g-recaptcha" data-sitekey="6LeMBBsjAAAAAJbKI8YEA2ETvxN2z-9FycPeayRC"></div>
+
+          <!-- Invalid recaptcha error-->
+          <?php echo $recaptchaErr; ?>
+
+          <!-- Form submit button -->
+          <input type="submit" name='loginBtn' class="fadeIn fourth mt-3" value="Log In">
+
+        </form>
       </div>
 
-      <!-- Login Form -->
-      <form method='POST' class="d-flex flex-column align-items-center">
+      <!-- google recaptcha -->
+      <script src='https://www.google.com/recaptcha/api.js'></script>
 
-        <!-- Email input field -->
-        <div class="row">
-          <div class="col-md-12 p-0">
-            <div class="form-group">
-              <label for="">Email Address:</label>
-              <input type="email" id="login" class="fadeIn second form-control" autocomplete="off" name="email" placeholder="Email">
-            </div>
-          </div>
-        </div>
-
-        <!-- Password input field -->
-        <div class="row">
-          <div class="col-md-12 p-0">
-            <div class="form-group">
-              <label for="" class="mt-3">Password:</label>
-              <input type="password" id="password" class="fadeIn third form-control" name="password" placeholder="Password">
-            </div>
-          </div>
-        </div>
-
-        <!-- Incorrect email/password error -->
-        <?php echo $loginError; ?>
-
-        <!-- Google Recaptcha -->
-        <div class="g-recaptcha" data-sitekey="6LeMBBsjAAAAAJbKI8YEA2ETvxN2z-9FycPeayRC"></div>
-
-        <!-- Invalid recaptcha error-->
-        <?php echo $recaptchaErr; ?>
-
-        <!-- Form submit button -->
-        <input type="submit" name='loginBtn' class="fadeIn fourth mt-3" value="Log In">
-
-      </form>
-    </div>
-  </div>
-
-  <!-- JS Files -->
-
-  <!-- google recaptcha -->
-  <script src='https://www.google.com/recaptcha/api.js'></script>
-
-  <!-- Common js files that will be linked to every page -->
-
-  <?php include 'footer.php' ?>
-
-
-</body>
-
-</html>
+      <?php include 'footer.php' ?>
