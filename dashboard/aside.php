@@ -1,14 +1,14 @@
-<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start " id="sidenav-main">
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-gray-900 fixed-start " id="sidenav-main">
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand d-flex align-items-center m-0" href="admin.php" target="_blank">
-      <span class="font-weight-bold text-lg"><?php echo $seoTblResult[1]; ?></span>
+      <span class="font-weight-bold text-white text-2xl"><?php echo $seoTblResult[1]; ?></span>
     </a>
   </div>
   <div class="collapse navbar-collapse px-4 w-auto h-auto" id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" href="admin.php">
+        <a class="nav-link" href="admin.php">
           <i class="far fa-circle-user"></i>
           <span class="font-weight-normal text-md ms-2">Account Settings</span>
         </a>
@@ -39,7 +39,7 @@
         </ul>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="../pages/tables.html">
+        <a class="nav-link" href="editNavbar.php">
           <div class="me-3 text-center d-flex align-items-center justify-content-center">
             <i class="fa fa-location-arrow"></i>
           </div>
@@ -47,7 +47,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="../pages/tables.html">
+        <a class="nav-link  " href="editContactDetails.php">
           <div class="me-3 text-center d-flex align-items-center justify-content-center">
             <i class="fa fa-list"></i>
           </div>
@@ -55,7 +55,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="../pages/tables.html">
+        <a class="nav-link  " href="seo.php">
           <div class="me-3 text-center d-flex align-items-center justify-content-center">
             <i class="fab fa-searchengin"></i>
           </div>
@@ -63,7 +63,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="../pages/tables.html">
+        <a class="nav-link  " href="theme.php">
           <div class="me-3 text-center d-flex align-items-center justify-content-center">
             <i class="fa fa-paint-roller"></i>
           </div>

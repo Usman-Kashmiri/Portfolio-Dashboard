@@ -102,7 +102,7 @@ if (isset($_POST['loginBtn'])) {
         </div>
 
         <!-- Login Form -->
-        <form method='POST' class="d-flex flex-column align-items-center">
+        <form id="loginForm" method='POST' class="d-flex flex-column align-items-center">
 
           <!-- Email input field -->
           <div class="row">

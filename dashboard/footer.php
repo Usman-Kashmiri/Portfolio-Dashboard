@@ -9,7 +9,7 @@
 <script src="../corporate ui design kit/js/core/bootstrap.min.js"></script>
 
 <!-- Perfect Scroll & Smooth Scroll plugins -->
-<!-- <script src="../corporate ui design kit/js/plugins/perfect-scrollbar.min.js"></script> -->
+<script src="../corporate ui design kit/js/plugins/perfect-scrollbar.min.js"></script>
 <!-- <script src="../corporate ui design kit/js/plugins/smooth-scrollbar.min.js"></script> -->
 
 <!-- Chart Js -->

@@ -44,7 +44,7 @@ include 'session.php';
 
     <!-- main -->
 
-    <main class="main-content position-relative min-vh-100 border-radius-lg">
+    <main class="main-content min-vh-95">
 
         <!-- Navbar -->
         <?php include 'navbar.php' ?>
