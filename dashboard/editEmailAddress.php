@@ -38,9 +38,9 @@ if (isset($_POST['updateBtn'])) {
 ?>
 
 <section>
-    <div class="container d-flex flex-column justify-content-center align-items-center my-5 gap-4 px-5 py-3 rounded-3">
+<div class="container d-flex flex-column justify-content-center align-items-center my-5 gap-3 px-lg-5 px-2 py-3 rounded-3">
         <h3 class="fs-3">Update Email Address:</h3>
-        <form method="POST" class="col-6 justify-content-center gap-2" action="">
+        <form method="POST" class="col-lg-6 col-md-8 col-12 justify-content-center gap-2" action="">
             <div class="d-flex justify-content-center align-items-center gap-2">
                 <input type="text" name="emailAddress" class="form-control" autocomplete="false" value="<?php echo $emailAddress; ?>">
                 <input class="btn btn-outline-success m-0" name="updateBtn" type="submit" value="Update">

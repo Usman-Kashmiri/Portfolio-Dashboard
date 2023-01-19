@@ -6,6 +6,8 @@ session_start();
 
 include '../fetchAll.php';
 
+$userEmail = "";
+$userPassword = "";
 $loginError = "";
 $recaptchaErr = "";
 
@@ -18,9 +20,14 @@ if (isset($_POST['loginBtn'])) {
     $response = file_get_contents($url);
     $response = json_decode($response);
     $userEmail = $_POST['email'];
-    $userPassword = sha1($_POST['password']);
+    $userPassword = $_POST['password'];
 
     if ($response->success) {
+      
+      // Password Encryption:
+      $userPassword = sha1($_POST['password']);
+
+      // SQL Query:
       $sqlQuery = "SELECT * FROM admin_tbl WHERE user_email = :email && user_password = :pass";
 
       $stmt = $conn->prepare($sqlQuery);
@@ -34,6 +41,9 @@ if (isset($_POST['loginBtn'])) {
           $_SESSION['email'] = $row['user_email'];
           header("location: admin.php");
         } else {
+          
+          $userPassword = $_POST['password'];
+
           $loginError = '<div class="alert bg-gradient-danger alert-dismissible text-sm  text-white  fade show mt-3" role="alert">
           <span class="alert-icon"><i class="fa fa-triangle-exclamation"></i></span>
           <span class="alert-text">Incorret email address or password!</span>
@@ -41,9 +51,14 @@ if (isset($_POST['loginBtn'])) {
                 <span aria-hidden="true">&times;</span>
             </button>
           </div>';
+          
         }
       }
     } else {
+      
+      $userEmail = $_POST['email'];
+      $userPassword = $_POST['password'];
+      
       $recaptchaErr = '<div class="alert bg-gradient-danger alert-dismissible text-sm  text-white  fade show mt-3" role="alert">
       <span class="alert-icon"><i class="fa fa-triangle-exclamation"></i></span>
       <span class="alert-text">Invalid Recaptcha...!</span>
@@ -51,6 +66,7 @@ if (isset($_POST['loginBtn'])) {
             <span aria-hidden="true">&times;</span>
         </button>
       </div>';
+
     }
   }
 }
@@ -109,7 +125,7 @@ if (isset($_POST['loginBtn'])) {
             <div class="col-md-12 p-0">
               <div class="form-group">
                 <label for="">Email Address:</label>
-                <input type="email" id="login" class="fadeIn second form-control" autocomplete="off" name="email" placeholder="Email">
+                <input type="email" id="login" class="fadeIn second form-control" value="<?php echo $userEmail; ?>" autocomplete="off" name="email" placeholder="Email">
               </div>
             </div>
           </div>
@@ -119,7 +135,10 @@ if (isset($_POST['loginBtn'])) {
             <div class="col-md-12 p-0">
               <div class="form-group">
                 <label for="" class="mt-3">Password:</label>
-                <input type="password" id="password" class="fadeIn third form-control" name="password" placeholder="Password">
+                <div class="d-flex justify-content-end">
+                  <input type="password" id="password" class="fadeIn third form-control" value="<?php echo $userPassword; ?>" name="password" placeholder="Password">
+                  <span onclick="showPassword('#password', '#show_password')" class="show-password-icon position-absolute mt-2 me-2 cursor-pointer"><i id="show_password" class="fs-5 fa fa-eye"></i></span>
+                </div>
               </div>
             </div>
           </div>

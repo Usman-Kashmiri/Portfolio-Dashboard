@@ -26,27 +26,46 @@ if (isset($_POST["updateBtn"])) {
     }
     else if (sha1($_POST['old_password']) != $password) {
 
+        $oldPassword = $_POST['old_password'];
+
         $oldPasswordErrorMsg = '<span class="text-danger fs-6 fw-bold text-center">Password mismatched, Incorrect old password...!</span>';
 
     } else if (empty($_POST['new_password'])) {
+
+        $oldPassword = $_POST['old_password'];
+        $newPassword = $_POST['new_password'];
 
         $newPasswordErrorMsg = '<span class="text-danger fs-6 fw-bold text-center">Please enter a new password...!</span>';
 
     } else if (!preg_match($newPassword_REGEX, $_POST['new_password'])) {
 
+        $oldPassword = $_POST['old_password'];
+        $newPassword = $_POST['new_password'];
+
         $newPasswordErrorMsg = '<span class="text-danger fs-6 fw-bold text-center">Password should be 8 characters long, must include alphabets and at least 1 number...!</span>';
 
     } else if (empty($_POST['confirm_password'])) {
+
+        $oldPassword = $_POST['old_password'];
+        $newPassword = $_POST['new_password'];
 
         $confirmPasswordErrorMsg = '<span class="text-danger fs-6 fw-bold text-center">Please verify your new password...!</span>';
 
     } else if ($_POST['old_password'] == $_POST['new_password']) {
 
+        $oldPassword = $_POST['old_password'];
+        $newPassword = $_POST['new_password'];
+        $confirmPassword = $_POST['confirm_password'];
+
         $newPasswordErrorMsg = '<span class="text-danger fs-6 fw-bold text-center">New password cannot be same as the old password...!</span>';
 
     } else if ($_POST['new_password'] != $_POST['confirm_password']) {
 
-        $confirmPasswordErrorMsg = '<span class="text-danger fs-6 fw-bold text-center">Password mismatched...!</span>';
+        $oldPassword = $_POST['old_password'];
+        $newPassword = $_POST['new_password'];
+        $confirmPassword = $_POST['confirm_password'];
+
+        $confirmPasswordErrorMsg = '<span class="text-danger fs-6 fw-bold text-center">Confirm password mismatched...!</span>';
 
     } else {
 
@@ -74,7 +93,7 @@ if (isset($_POST["updateBtn"])) {
             <div class="form-group">
                 <label for="old_password_field" class="form-control-label">Old Password:</label>
                 <div class="d-flex justify-content-end mb-2">
-                    <input type="password" id="old_password_field" name="old_password" class="password-field form-control" placeholder="Enter Your Old Password">
+                    <input type="password" id="old_password_field" name="old_password" value="<?php echo $oldPassword; ?>" class="password-field form-control" placeholder="Enter Your Old Password">
                     <span onclick="showPassword('#old_password_field', '#show_old_password')" class="show-password-icon position-absolute mt-2 me-2 cursor-pointer"><i id="show_old_password" class="fs-5 fa fa-eye"></i></span>
                 </div>
                 <?php echo $oldPasswordErrorMsg; ?>
@@ -82,7 +101,7 @@ if (isset($_POST["updateBtn"])) {
             <div class="form-group">
                 <label for="new_password" class="form-control-label">New Password:</label>
                 <div class="d-flex justify-content-end mb-2">
-                    <input type="password" id="new_password" name="new_password" class="password-field form-control" placeholder="Enter New Password">
+                    <input type="password" id="new_password" name="new_password" value="<?php echo $newPassword; ?>" class="password-field form-control" placeholder="Enter New Password">
                     <span onclick="showPassword('#new_password', '#show_new_password')" class="show-password-icon position-absolute mt-2 me-2 cursor-pointer"><i id="show_new_password" class="fs-5 fa fa-eye"></i></span>
                 </div>
                 <?php echo $newPasswordErrorMsg; ?>
@@ -90,7 +109,7 @@ if (isset($_POST["updateBtn"])) {
             <div class="form-group">
                 <label for="confirm_password" class="form-control-label">Old Password:</label>
                 <div class="d-flex justify-content-end mb-2">
-                    <input type="password" id="confirm_password" name="confirm_password" class="password-field form-control" placeholder="Confirm New Password">
+                    <input type="password" id="confirm_password" name="confirm_password" value="<?php echo $confirmPassword; ?>" class="password-field form-control" placeholder="Confirm New Password">
                     <span onclick="showPassword('#confirm_password', '#show_confirm_password')" class="show-password-icon position-absolute mt-2 me-2 cursor-pointer"><i id="show_confirm_password" class="fs-5 fa fa-eye"></i></span>
                 </div>
                 <?php echo $confirmPasswordErrorMsg; ?>
@@ -99,7 +118,7 @@ if (isset($_POST["updateBtn"])) {
                 <input class="btn btn-outline-success" name="updateBtn" type="submit" value="Reset Password">
             </div>
         </form>
-        <button onclick="window.location.href = 'admin.php'" class="btn btn-dark">Go Back</button>
+        <button onclick="history.back()" class="btn btn-dark cursor-pointer">Go Back</button>
     </div>
 </section>
 
